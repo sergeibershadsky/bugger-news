@@ -10,12 +10,10 @@ from starlette.datastructures import CommaSeparatedStrings
 from app.config.arq import redis_settings
 from app.utils import arq
 from app.tasks.scrap import scrap_hackernews
-from loguru import logger
 
 sys.path.extend(["./"])
 
-p = Path(__file__).parents[2] / ".env"
-config = Config(p if p.exists() else None)
+config = Config()
 
 ARQ_BACKGROUND_FUNCTIONS: Optional[CommaSeparatedStrings] = config(
     "ARQ_BACKGROUND_FUNCTIONS", cast=CommaSeparatedStrings, default=None
