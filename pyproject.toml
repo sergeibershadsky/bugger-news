@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "buggernews"
+version = "0.1.0"
+description = "Test task for AppFollow"
+authors = ["sergeibersadsky <sergeibershadsky@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.61.0"
+arq = "^0.19"
+tortoise-orm = "^0.16.14"
+uvicorn = "^0.11.8"
+httpx = "^0.14.1"
+lxml = "^4.5.2"
+asyncpg = "^0.21.0"
+python-dotenv = "^0.14.0"
+loguru = "^0.5.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0.1"
+asynctest = "^0.13.0"
+requests = "^2.24.0"
+mimesis = "^4.1.1"
+pytest-asyncio = "^0.14.0"
+watchgod = "^0.6"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
