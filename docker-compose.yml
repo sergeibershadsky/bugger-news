@@ -2,32 +2,23 @@ version: "3"
 
 services:
   app:
-    container_name: fastapi-gino-arq-uvicorn
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - REDIS_IP=cache
-      - REDIS_PORT=6379
-      - DB_URL=postgres://postgres:postgres@database:5432/postgres
+    container_name: fastapi-tortoise-arq-uvicorn
+    build: .
+    env_file: .env
     depends_on:
       - database
       - redis
+    ports:
+      - 80:80
 
   worker:
-    container_name: fastapi-gino-arq-uvicorn-worker
-    build:
-      context: .
-      dockerfile: Dockerfile.worker
+    container_name: fastapi-tortoise-arq-uvicorn-worker
+    build: .
     depends_on:
       - database
       - redis
-    environment:
-      - ARQ_BACKGROUND_FUNCTIONS=app.tasks.scrap.scrap_hackernews
-      - REDIS_IP=cache
-      - REDIS_PORT=6379
-      - DB_URL=postgres://postgres:postgres@database:5432/postgres
     env_file: .env
+    command: arq app.worker.WorkerSettings
 
   redis:
     image: redis

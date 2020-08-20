@@ -31,5 +31,5 @@ class WorkerSettings:
     redis_settings = redis_settings
     functions: list = FUNCTIONS
     cron_jobs = [
-        cron(scrap_hackernews, second=5)
+        cron(scrap_hackernews, hour=1)
     ]
